@@ -1,0 +1,461 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Merriweather Sans", sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 3% 10px 10px;
+  position: fixed;
+  padding-right: 20px;
+  z-index: 100;
+  min-width: 100vw;
+  top: 0;
+  left: 0;
+}
+header.sticky {
+  background: rgb(4, 4, 15);
+  position: fixed;
+  /* transition: all ease-in-out 0.5s; */
+  border-radius: 3px;
+  color: white;
+  box-shadow: 2px 0 10px rgb(49, 133, 236);
+}
+header.sticky a {
+  color: white;
+}
+.sticky .line {
+  background-color: white;
+  transition: all ease-in-out 0.4s;
+  z-index: 1;
+}
+.cart {
+  z-index: 10;
+  background-color: rgba(250, 116, 20, 0.9);
+  padding: 1px 8px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.cart img {
+  width: 18px;
+  max-width: 25px;
+}
+.cart span {
+  font-size: 1rem;
+}
+
+/* .line1 {
+  transform: rotate(45deg);
+  transform: skewX(3);
+}
+.line2 {
+  display: none;
+}
+.line3 {
+  transform: rotate(-45deg);
+} */
+
+a {
+  text-decoration: none;
+  color: rgb(77, 92, 209);
+  font: 1.2rem "Merriweather";
+  display: block;
+  font-variant: small-caps;
+}
+header a:hover {
+  text-decoration: underline;
+  transition: all 1s;
+  background-color: rgb(65, 75, 96);
+}
+li {
+  list-style-type: none;
+}
+header li {
+  margin: 0 20px;
+}
+
+.appear {
+  top: 40px;
+}
+
+header nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.logo {
+  max-width: 50px;
+}
+
+.banner-img {
+  width: 100%;
+  max-width: 100vw;
+  height: auto;
+}
+
+.banner {
+  background-color: rgba(250, 116, 20, 0.3);
+  padding-bottom: 30px;
+}
+
+.banner-content h1 {
+  text-align: left;
+  padding: 10px;
+  margin: 25px 5px 30px;
+  font: oblique 2rem "Potta One", cursive;
+  color: rgb(4, 4, 39);
+}
+
+.banner-content {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 30px;
+  padding-top: 80px;
+}
+
+#shop-now {
+  padding: 10px;
+  margin: 0 auto;
+  background-color: rgba(250, 116, 20, 0.9);
+  border-radius: 10px;
+  color: white;
+  border: none;
+  font-size: 14px;
+  display: block;
+  width: 25%;
+  min-width: 150px;
+  outline: none;
+}
+
+#shop-now:hover {
+  font-size: 0.9rem;
+  width: 200px;
+  letter-spacing: 2px;
+}
+button:hover {
+  transition: all 1s ease;
+  opacity: 0.8;
+}
+
+.text {
+  line-height: 1.8;
+  background: rgb(4, 4, 39) url("icons/wave.svg") no-repeat center center/cover;
+}
+
+.millenial-text {
+  color: hsl(180, 71%, 97%);
+  text-align: center;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.millenial-text h3 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 35px auto 20px;
+  letter-spacing: 1px;
+}
+
+.millenial-text p {
+  text-align: justify;
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+q {
+  display: block;
+  margin: 20px auto;
+  letter-spacing: 0.6px;
+  font-weight: bold;
+}
+
+.gallery-section {
+  background-color: rgba(7, 20, 87, 0.15);
+  padding-top: 50px;
+}
+.gallery-section h2 {
+  font-size: 1.4rem;
+  text-align: center;
+  color: rgb(25, 33, 34);
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.product {
+  max-width: 90vw;
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+  padding-bottom: 50px;
+}
+
+.product img {
+  max-width: 100%;
+  box-shadow: 5px 10px 20px;
+  display: block;
+  margin: 0 auto;
+}
+.price {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.8rem;
+  opacity: 0;
+  /* transition: all 0.1s; */
+}
+
+.price:hover {
+  opacity: 1;
+  background-color: rgba(49, 49, 48, 0.11);
+  height: 77%;
+  left: 0;
+  top: 0;
+}
+
+.product-name {
+  font-weight: bold;
+  margin: 20px auto 4px;
+}
+
+.add-to-cart-btn,
+[type="submit"] {
+  background: rgba(250, 116, 20, 0.8);
+  outline: none;
+  border: none;
+  padding: 8px;
+  width: 140px;
+  border-radius: 10px;
+  font: italic bold 0.7rem "Merriweather Sans", sans-serif;
+  cursor: pointer;
+}
+[type="submit"] {
+  font-weight: normal;
+}
+
+footer {
+  background: rgb(0, 0, 0);
+  color: white;
+  padding: 5%;
+  font-family: "Architects Daughter", cursive;
+  text-align: center;
+}
+
+footer img {
+  width: 50px;
+}
+
+footer h3 {
+  font-size: 2rem;
+  margin: 0 2%;
+  padding: 0px 20px 20px 20px;
+}
+
+footer form label {
+  padding: 25px 0;
+  font-size: 0.85rem;
+}
+
+footer input {
+  display: block;
+  width: 100%;
+  margin-top: 30px;
+  height: 40px;
+  border: none;
+  background-color: black;
+  color: rgba(250, 116, 20, 0.8);
+  outline: none;
+  text-align: center;
+}
+::placeholder {
+  color: rgba(217, 172, 140, 0.958);
+  text-align: center;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+form button {
+  color: white;
+  background: rgba(250, 116, 20, 0.8);
+  font-weight: normal;
+  margin-bottom: 40px;
+}
+
+.quick-links li a {
+  font-size: 0.85rem;
+  text-align: center;
+  color: rgb(243, 235, 225);
+  font-variant: normal;
+}
+.quick-links li {
+  padding: 10px;
+}
+.contacts {
+  max-width: 100%;
+}
+.contacts ul {
+  display: flex;
+  justify-content: center;
+  padding: 30px 5px 30px;
+  margin: 0;
+}
+.contacts li {
+  padding: 0;
+}
+
+.app {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 20px 50px;
+}
+
+.app .playstore a {
+  font-size: 0.8rem;
+  width: 70px;
+  text-align: left;
+}
+
+.app div img {
+  float: left;
+}
+
+.app .address a {
+  font-size: 0.8rem;
+  width: 110px;
+  text-align: right;
+}
+
+.copy-ninja {
+  /* padding: 20px; */
+  margin: 5px auto;
+  max-width: 250px;
+}
+
+dialog {
+  max-width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: -700px;
+}
+.dialog-toggle {
+  transition: 1s ease-in-out;
+  top: 40px;
+}
+dialog table {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px 0;
+}
+tr {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px 0;
+}
+.added-item {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px 0;
+}
+.item-section {
+  width: 100%;
+}
+
+.item-section table tr td {
+  font-weight: 300;
+  font-size: 0.8rem;
+  padding: 8px;
+  max-width: 100%;
+}
+
+.item-section th {
+  font-size: 0.8rem;
+}
+dialog .remove {
+  background: rgba(250, 116, 20, 0.8);
+  outline: none;
+  border: none;
+  padding: 8px;
+  border-radius: 10px;
+  font: italic bold 0.8rem "Merriweather Sans", sans-serif;
+  cursor: pointer;
+}
+
+dialog .inputs {
+  width: 80%;
+  margin: 2px auto 30px;
+}
+
+dialog input {
+  width: 100%;
+  margin: 5px auto;
+  border: none;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.531);
+  outline: none;
+  background-color: blanchedalmond;
+  border-radius: 3px;
+  line-height: 2;
+}
+
+.amount-section {
+  text-align: center;
+  padding: 5%;
+  margin-bottom: 20px;
+  background-color: rgba(255, 235, 205, 0.545);
+  border-radius: 5px;
+}
+
+.amount-section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.amount-section h2 {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.checkout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkout button {
+  font-weight: normal;
+  font-size: 13px;
+  padding: 10px 5px;
+  margin: 30px 5%;
+  border-radius: 10px;
+  background: rgba(250, 116, 20, 0.8);
+  outline: none;
+  border: none;
+  width: 30%;
+}
+#continue-shopping-btn {
+  background-color: rgba(231, 171, 158, 0.896);
+}
+
+#checkout-btn {
+  color: white;
+}
+
+dialog ::placeholder {
+  color: black;
+  font-size: 0.7rem;
+}
