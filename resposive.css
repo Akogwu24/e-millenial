@@ -1,46 +1,51 @@
-@media (max-width: 550px) {
-  .hamburger {
-    height: 13px;
-    width: 22px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
+@media (min-width: 650px) {
+  .banner-content {
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
-    top: 17px;
-    left: 50%;
   }
-  .line {
-    height: 2px;
-    width: 100%;
-    background-color: rgb(17, 13, 10);
-    z-index: 10;
+  .banner-img {
+    width: 50vw;
+  }
+  .banner-content h1 {
+    width: 40vw;
+    font-size: 2.2rem;
+  }
+  .wrapper {
+    width: 90%;
   }
   header nav {
-    position: absolute;
-    top: -9000px;
-    left: 0;
-    background-color: rgb(5, 5, 5);
-    /* background-color: linear-gradient(rgb(23, 31, 55), rgb(110, 114, 193)); */
-    width: 100vw;
-    height: 100vh;
-    display: flex;
+    position: static;
+    background-color: transparent;
+    height: 40px;
+    width: 50vw;
   }
-  header nav ul {
-    flex-direction: column;
-    margin-top: -30px;
-  }
-  header nav li {
-    padding: 15px;
+  .header-element-container ul {
     width: 100%;
-    text-align: center;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    margin-top: -25px;
+  }
+  .header-element-container ul li {
+    padding: 0;
+  }
+  .hamburger {
+    display: none;
   }
   header nav li a {
     color: rgb(255, 255, 255);
-    font-size: 1.3em;
-    border-bottom: 1px solid rgba(222, 222, 222, 0.3);
-    background-color: rgba(34, 31, 31, 0.31);
+    font-size: 1.1em;
+  }
+}
+
+@media (min-width: 550px) {
+  .modal-container {
+    padding: 30px 15% 5%;
+    background-color: rgb(228, 223, 220);
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -48,15 +53,17 @@
   a {
     font-size: 1.4rem;
   }
-  .banner-content {
-    flex-direction: row;
-    justify-content: space-between;
-
-    align-items: center;
+  .cart img {
+    width: 25px;
+  }
+  .logo {
+    width: 70px;
+  }
+  header nav {
+    width: 65%;
   }
   .banner-img {
     min-width: 55%;
-    max-width: 100%;
     display: block;
   }
   .banner-content h1 {
@@ -64,11 +71,8 @@
     margin: 0;
     padding: 0;
   }
-  #shop-now {
-    min-width: 200px;
-  }
-  #shop-now:hover {
-    width: 250px;
+  .hide-mobile {
+    display: block;
   }
   .millenial-text h3 {
     font-size: 1.8rem;
@@ -109,9 +113,30 @@
   .copy-ninja {
     grid-column: 1/3;
   }
+  .modal-container {
+    padding: 30px 5% 5%;
+    background-color: rgb(228, 223, 220);
+    width: 70%;
+    height: 100%;
+  }
 }
 
 @media (min-width: 960px) {
+  .wrapper {
+    width: 80%;
+  }
+  header nav {
+    width: 50%;
+  }
+  .logo {
+    width: 100px;
+  }
+  .cart img {
+    width: 30px;
+  }
+  .cart span {
+    font-size: 1.5rem;
+  }
   .banner-content h1 {
     font-size: 3rem;
   }
@@ -119,7 +144,7 @@
     max-width: 68%;
   }
   .millenial-text h3 {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
   }
   .millenial-text p {
     font-size: 1.2rem;
@@ -137,7 +162,6 @@
     width: 85%;
     margin: 0 auto;
     grid-template-columns: repeat(5, 1fr);
-    /* grid-template-rows: auto; */
     grid-gap: 20px;
   }
   .foot-form {
@@ -146,6 +170,10 @@
   .copy-ninja {
     grid-column: 5/6;
     grid-row: 1;
+  }
+  .copy-ninja small {
+    margin-bottom: 20px;
+    display: block;
   }
   .contacts ul {
     flex-direction: column;
@@ -160,5 +188,11 @@
   }
   .copy-ninja small {
     font-size: 0.8rem;
+  }
+  .modal-container {
+    padding: 30px 10% 5%;
+    background-color: rgb(228, 223, 220);
+    width: 70%;
+    height: 100%;
   }
 }

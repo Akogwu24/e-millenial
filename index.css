@@ -1,0 +1,13 @@
+/* * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Merriweather Sans', sans-serif;
+}
+.banner header {
+  display: flex;
+}
+.banner {
+  background-color: rgba(250, 116, 20, 0.3);
+  padding-bottom: 30px;
+} */

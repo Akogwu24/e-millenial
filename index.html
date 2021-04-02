@@ -16,29 +16,32 @@
   <body>
     <!-- header and banner -->
     <section class="banner">
-        <header class="wrapper">
-          <img src="/project-files/images/EMS.svg" alt="LOGO" class="logo" />
-
-          <nav id="nav-bar">
-            <div class="hamburger">
-              <div class="line line1"></div>
-              <div class="line line2"></div>
-              <div class="line line3"></div>
+      <header>
+        <div class='wrapper'>
+          <div class="header-element-container">
+            <img src="/project-files/images/EMS.svg" alt="LOGO" class="logo" />
+            <nav id="nav-bar">
+              <div class="hamburger">
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+                <div class="line line3"></div>
+              </div>
+              <ul>
+                <li><a href="#">Intro</a></li>
+                <li><a href="#millenial-text">About</a></li>
+                <li><a href="#our-gadgets">Shop</a></li>
+                <li><a href="#contacts">Contact Us</a></li>
+              </ul>
+            </nav>
+            <div id="cart-btn" class="cart">
+              <img width src="project-files/images/my-cart.svg" alt="cart-icon" />
+              <span id="count">0</span>
             </div>
-            <ul>
-              <li><a href="#">Intro</a></li>
-              <li><a href="#millenial-text">About</a></li>
-              <li><a href="#our-gadgets">Shop</a></li>
-              <li><a href="#contacts">Contact Us</a></li>
-            </ul>
-          </nav>
-          <div id="cart-btn" class="cart">
-            <img src="project-files/images/my-cart.svg" alt="cart-icon" />
-            <span id="count">0</span>
           </div>
-        </header>
-
-        
+        </div>
+      </header>
+       
+      <!-- hero-image -->
         <div class="banner-content wrapper">
           <h1>THE <br />E-&nbsp;MILLENIAL <br />STORE.</h1>
           <img
@@ -48,22 +51,20 @@
           height="#"
           width="#"
           />
-          
-         
         </div>
         <button id="shop-now">SHOP NOW</button>
     </section>
 
     <section class="text">
       <div class="wrapper">
-        <article id='millenial-text' class="millenial-text">
+        <article id='millenial-text'>
           <h3>MILLENIALS!</h3>
-          <p>
+          <p >
             Never struggle to find the best gifts for yourself and Loved ones as
             EMS is got you back 24/7 with our supper efficient, swift yet super
             affordable collection....
           </p>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit sequi aut inventore, quis voluptates esse consectetur neque fugit possimus sapiente ducimus porro a delectus. Molestias explicabo quasi deleniti similique ea?</p>
+          <p class='hide-mobile'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit sequi aut inventore, quis voluptates esse consectetur neque fugit possimus sapiente ducimus porro a delectus. Molestias explicabo quasi deleniti similique ea?</p>
           <q id="up">UP USTACKY!!! <small id="our-gadgets">(our Sponsor)</small></q>
         </article>
       </div>
@@ -153,12 +154,10 @@
           </div>
         </div>
       </div>
-    </section>
-    <hr />
-    <!-- <secton>
-      <h3>WHAT OUR CUSTOMERS ARE SAYING</h3>
-    </secton> -->
+    </section> 
 
+
+    <!-- footer -->
     <footer id='contacts'>
       <div class="wrapper">
 
@@ -183,7 +182,7 @@
           </ul>
         </div>
 
-        <!-- what our customers are saying careers, FAQ terms, privacy, phone number, email, stay in the know, custmer care, playstore app logo and IOS store app download logo -->
+       
         <div class="contacts">
           <ul>
             <li>
@@ -228,69 +227,60 @@
       </div>
     </footer>
 
-    <dialog open id="modal-box">
-      <div class="item-section">
-        <table>
-          <tr>
-            <th>S/N</th>
-            <th>ITEM</th>
-            <th>PRICE</th>
-            <th>QUANTITY</th>
-            <th>REM</th>
-          </tr>
-          <!-- <tr class='added-item'>
-            <td>1</td>
-            <td class="product-name-in-dialog">Apple</td>
-            <td class="product-price-in-dialog">000</td>
-            <td>
-              <span class='decrease-items'>-</span>
-              <span class='checkout-quantity'>1</span>
-              <span class='increase-items'>+</span>
-            </td>
-            <td><button class='remove'>remove</button></td>
-          </tr> 
-          <tr class='added-item'>
-            <td>2</td>
-            <td >Apple</td>
-            <td >000</td>
-            <td><span class='decrease-items'>-</span >
-              <sapn class='checkout-quantity'>1</sapn>
-              <span class='increase-items'>+</span>
-            </td>
-            <td><button class='remove'>remove</button></td>
-          </tr> -->
-        </table>
-      </div>
-
-      <form> 
-        <div class="inputs">
-          <input type="text" name="name" id="name" placeholder="Your Name" />
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Your Email"
-          />
-          <input
-            type="number"
-            name="telephone"
-            id="telephone"
-            placeholder="Your Telephone number"
-          />
+        
+    <!-- modal -->
+    <section class="modal">
+      <div class="modal-container">
+        <div class="cart-items">
+          <div class="cart-row">
+            <div class="cart-row-headers">
+              <h4>ITEM</h4>
+              <h4 class='cart-price'>PRICE</h4>
+              <h4 class='cart-quantity'>QUANTITY</h4>
+            </div>
+             <!-- first selected cart item row -->
+            <div class="individual-cart-item-row">
+             
+              <span>watch</span>
+              <span class='cart-price'>$5550</span>
+              <div class="cart-item-quantity">
+                <input value='1' type='number'>
+                <button class="remove-btn">
+                  Remove
+                </button>
+              </div>
+            </div>
+            <!-- second row cart row -->
+            <div class="individual-cart-item-row">
+              <span>Apple</span>
+              <span>$850</span>
+              <div class="cart-item-quantity">
+                <input value='2' type='number'>
+                <button class="remove-btn">
+                  Remove
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-      </form>
-      <section>
-        <div class="amount-section">
+        <form acton="" method="post">
+          <input type="text" placeholder="please input your name">
+          <input type="email" placeholder="please input your email">
+          <input type="number" placeholder="please input your phne number">
+        </form>
+        <div class="total-amount">
           <h2>Total Amount to be Paid</h2>
-          <h3 class="total-amount">#3,000</h3>
+          <span id="total">$342424</span>
         </div>
-      </section>
-      <div class="checkout">
-        <button id="continue-shopping-btn">Continue Shopping</button>
-        <button id="checkout-btn">Checkout</button>
-      </div>
-    </dialog>
+        <div class="continue-checkout">
+          <button Id="continue">Continue Shopping</button>
+          <button Id="checkout">Checkout</button>
+        </div>
 
-    <script src="main.js" charset="utf-8"></script>
+      </div>
+    </section>
+
+
+    <script src="script.js" charset="utf-8"></script>
   </body>
 </html>
