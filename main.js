@@ -1,9 +1,3 @@
-//header scroll functionality
-// const header = document.querySelector('header');
-// window.addEventListener('scroll', () => {
-//   header.classList.toggle('sticky', window.scrollY > 0);
-// });
-
 //hamburger and navbar fumctionality
 const navBar = document.getElementById('nav-bar');
 const menu = document.querySelector('.hamburger');
@@ -11,62 +5,269 @@ menu.addEventListener('click', () => {
   navBar.classList.toggle('appear');
 });
 
+//Typing text Animation
+let heroText = document.querySelector('.banner-content h1');
+const text = heroText.innerText;
+let indexoOfTextCharcter = 0;
+function typeHeroText() {
+  heroText.innerText = text.slice(0, indexoOfTextCharcter);
+  indexoOfTextCharcter++;
+  if (indexoOfTextCharcter > text.length - 1) {
+    indexoOfTextCharcter = 0;
+  }
+}
+// setInterval(typeHeroText, 500);
+
 //modal toggle
 const modal = document.querySelector('.modal');
 const cartBtn = document.getElementById('cart-btn');
-
 cartBtn.addEventListener('click', () => {
+  refreshCart();
   modal.classList.add('modal-show');
+  document.querySelector('body').style.overflow = 'hidden';
 });
+
+//Refresher
+function refreshCart() {
+  let = content = document.querySelectorAll('.content');
+  if (content) {
+    for (let i = 0; i < content.length; i++) {
+      content[i].remove();
+    }
+    displayCart();
+  }
+}
 
 //continue shopping button functionlity
 const continueShopping = document.getElementById('continue');
 continueShopping.addEventListener('click', () => {
   modal.classList.remove('modal-show');
+  document.querySelector('body').style.overflow = 'visible';
 });
 
-// remove button functionality
-const removeBtn = document.querySelectorAll('.remove-btn');
+let products = [
+  {
+    name: 'Samsungtv',
+    price: 50000,
+    tag: 'Samsungtv',
+    inCart: 0,
+  },
+  {
+    name: 'Pixel4a',
+    price: 45000,
+    tag: 'Pixel4a',
+    inCart: 0,
+  },
+  {
+    name: 'Ps5',
+    price: 65000,
+    tag: 'Ps5',
+    inCart: 0,
+  },
+  {
+    name: 'Macbook',
+    price: 95000,
+    tag: 'Macbook',
+    inCart: 0,
+  },
+  {
+    name: 'Apple',
+    price: 40000,
+    tag: 'Apple',
+    inCart: 0,
+  },
+  {
+    name: 'Airpods',
+    price: 25000,
+    tag: 'Airpods',
+    inCart: 0,
+  },
+];
 
-for (
-  let cartRowToRemove = 0;
-  cartRowToRemove < removeBtn.length;
-  cartRowToRemove++
-) {
-  let removeButton = removeBtn[cartRowToRemove];
-  removeButton.addEventListener('click', (event) => {
-    let clickedRemoveButton = event.target;
-
-    // console.log(clickedRemoveButton);
-    clickedRemoveButton.parentElement.parentElement.remove();
-
-    updateCartTotal();
+const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+for (let index = 0; index < addToCartButtons.length; index++) {
+  addToCartButtons[index].addEventListener('click', () => {
+    cartNumbers(products[index]);
+    totalCost(products[index]);
   });
 }
 
-function updateCartTotal() {
-  //get the cart row
-  const cartItemContainer = document.getElementsByClassName('cart-items')[0];
-  const cartRows = cartItemContainer.getElementsByClassName(
-    '.individual-cart-item-row'
-  );
-  console.log(cartRows.length);
-  for (let priceEntry = 0; priceEntry < cartRows.length; priceEntry++) {
-    let cartRow = cartRows[priceEntry];
-    console.log(cartRow);
-    //to get the price and covert to number
-    cartPriceElement = cartRow.getElementsByClassName('cart-price')[0];
-    // let cartItemPrice = parseInt(cartPriceElement.innerHTML.replace('$', ''));
-
-    console.log(cartItemPriceElement);
-    //to get the quantity
-    const quantityElement = removeBtn[priceEntry].previousElementSibling.value;
-    console.log(cartItemPriceElement);
+function onLoadCartNumbers() {
+  let productNumbers = localStorage.getItem('cartNumbers');
+  if (productNumbers) {
+    document.getElementById('count').textContent = productNumbers;
   }
 }
-updateCartTotal();
 
-//Add Item to Cart
-// const addToCartButton = document.querySelectorAll('.add-to-cart-btn');
-// console.log(addToCartButton);
-// for (eachButton = 0; addToCartButton.length  eachButton++){
+function cartNumbers(product, action) {
+  let productNumbers = localStorage.getItem('cartNumbers');
+  productNumbers = parseInt(productNumbers);
+  let cartItems = localStorage.getItem('productsInCart');
+  cartItems = JSON.parse(cartItems);
+  if (action == 'decrease') {
+    localStorage.setItem('cartNumbers', productNumbers - 1);
+    document.getElementById('count').innerText = productNumbers - 1;
+  } else if (productNumbers) {
+    localStorage.setItem('cartNumbers', productNumbers + 1);
+    document.getElementById('count').innerText = productNumbers + 1;
+  } else {
+    localStorage.setItem('cartNumbers', 1);
+    document.getElementById('count').innerText = 1;
+  }
+  setItems(product);
+}
+
+function setItems(product) {
+  let cartItems = localStorage.getItem('productsInCart');
+  cartItems = JSON.parse(cartItems);
+  if (cartItems != null) {
+    if (cartItems[product.tag] == undefined) {
+      cartItems = {
+        ...cartItems,
+        [product.tag]: product,
+      };
+    }
+    cartItems[product.tag].inCart += 1;
+  } else {
+    product.inCart = 1;
+    cartItems = {
+      [product.tag]: product,
+    };
+  }
+  localStorage.setItem('productsInCart', JSON.stringify(cartItems));
+}
+
+function totalCost(product, action) {
+  console.log(product.price);
+  let cartCost = localStorage.getItem('totalCost');
+  if (action == 'decrease') {
+    cartCost = parseInt(cartCost);
+    localStorage.setItem('totalCost', cartCost - product.price);
+  } else if (cartCost != null) {
+    cartCost = parseInt(cartCost);
+    localStorage.setItem('totalCost', cartCost + product.price);
+  } else {
+    localStorage.setItem('totalCost', product.price);
+  }
+}
+
+function displayCart() {
+  let cartItems = localStorage.getItem('productsInCart');
+  cartItems = JSON.parse(cartItems);
+  let cartRow = document.querySelector('.cart-items');
+  if (cartItems) {
+    cartRow.innerHTML = '';
+    // let objectValues = Object.values(cartItems);
+    // console.log(objectValues[1].name);
+
+    Object.values(cartItems).map((item) => {
+      cartRow.innerHTML += `
+         <div class="individual-cart-item-row">
+           <span>${item.name}</span>
+           <span class='cart-item-price'>${item.price}</span>
+           <div class="cart-item-quantity">
+           <button class="minus"> - </button>
+           <span class='quantity'>${item.inCart}</span>
+           <button class="plus"> + </button>
+             <button class="remove-btn">
+               Remove
+             </button>
+           </div>
+         </div>`;
+    });
+    const total = localStorage.getItem('totalCost');
+    document.getElementById('total').innerText = total;
+  }
+  removeButton();
+  manageQuantity();
+}
+
+//Remove Button from Cart Functionality
+function removeButton() {
+  let removeButtons = document.querySelectorAll('.remove-btn');
+  console.log(removeButtons);
+  let productName;
+  let productNumbers = localStorage.getItem('cartNumbers');
+  let cartItems = localStorage.getItem('productsInCart');
+  cartItems = JSON.parse(cartItems);
+  // console.log(cartItems);
+  let cartCost = localStorage.getItem('totalCost');
+
+  for (i = 0; i < removeButtons.length; i++) {
+    let removeButton = removeButtons[i];
+    removeButton.addEventListener('click', () => {
+      productName = removeButton.parentElement.parentElement.firstElementChild.textContent.replace(
+        / /g,
+        ''
+      );
+      localStorage.setItem(
+        'cartNumbers',
+        productNumbers - cartItems[productName].inCart
+      );
+      localStorage.setItem(
+        'totalCost',
+        cartCost - cartItems[productName].price * cartItems[productName].inCart
+      );
+
+      delete cartItems[productName];
+      localStorage.setItem('productsInCart', JSON.stringify(cartItems));
+
+      displayCart();
+      onLoadCartNumbers();
+    });
+  }
+}
+
+function manageQuantity() {
+  let decreaseButtons = document.querySelectorAll('.minus');
+  let increaseButtons = document.querySelectorAll('.plus');
+  let cartItems = localStorage.getItem('productsInCart');
+  let currentQuantity = 0;
+  let currentProduct = '';
+  cartItems = JSON.parse(cartItems);
+  for (let i = 0; i < decreaseButtons.length; i++) {
+    decreaseButtons[i].addEventListener('click', () => {
+      currentQuantity = document.querySelector('.quantity').textContent;
+      console.log(currentQuantity);
+      currentProduct = decreaseButtons[
+        i
+      ].parentElement.parentElement.firstElementChild.textContent.replace(
+        / /g,
+        ''
+      );
+      console.log(currentProduct);
+
+      if (cartItems[currentProduct].inCart > 1) {
+        cartItems[currentProduct].inCart = cartItems[currentProduct].inCart - 1;
+        cartNumbers(cartItems[currentProduct], 'decrease');
+        totalCost(cartItems[currentProduct], 'decrease');
+        localStorage.setItem('productsInCart', JSON.stringify(cartItems));
+        displayCart();
+      }
+    });
+  }
+
+  for (let i = 0; i < increaseButtons.length; i++) {
+    increaseButtons[i].addEventListener('click', () => {
+      currentQuantity = document.querySelector('.quantity').textContent;
+      currentProduct =
+        increaseButtons[i].parentElement.parentElement.firstElementChild
+          .textContent;
+      currentProduct = decreaseButtons[
+        i
+      ].parentElement.parentElement.firstElementChild.textContent.replace(
+        / /g,
+        ''
+      );
+      console.log(currentProduct);
+      cartItems[currentProduct].inCart = cartItems[currentProduct].inCart + 1;
+      cartNumbers(cartItems[currentProduct]);
+      totalCost(cartItems[currentProduct]);
+      localStorage.setItem('productsInCart', JSON.stringify(cartItems));
+      displayCart();
+    });
+  }
+}
+
+onLoadCartNumbers();
+displayCart();
