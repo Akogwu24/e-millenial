@@ -27,6 +27,10 @@ cartBtn.addEventListener('click', () => {
   document.querySelector('body').style.overflow = 'hidden';
 });
 
+//summary modal toogle
+const summaryModal = document.querySelector('.summary-modal');
+console.log(summaryModal);
+
 //Refresher
 function refreshCart() {
   let = content = document.querySelectorAll('.content');
@@ -185,7 +189,6 @@ function displayCart() {
 //Remove Button from Cart Functionality
 function removeButton() {
   let removeButtons = document.querySelectorAll('.remove-btn');
-  console.log(removeButtons);
   let productName;
   let productNumbers = localStorage.getItem('cartNumbers');
   let cartItems = localStorage.getItem('productsInCart');
@@ -268,6 +271,29 @@ function manageQuantity() {
     });
   }
 }
-
 onLoadCartNumbers();
 displayCart();
+
+//Paystack
+// paymentForm.addEventListener('submit', payWithPaystack, false);
+function payWithPaystack(e) {
+  let handler = PaystackPop.setup({
+    key: 'pk_test_e09721b733f1a894c46d10a8dacfd0a48df79d8a', // Replace with your public key
+    email: document.getElementById('email').value,
+    amount: document.getElementById('total').value * 100,
+    ref: '' + Math.floor(Math.random() * 1000000000 + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+    // label: "Optional string that replaces customer email"
+    onClose: function () {
+      alert('Window closed.');
+    },
+    callback: function (response) {
+      let message = 'Payment complete! Reference: ' + response.reference;
+      alert(message);
+    },
+  });
+  handler.openIframe();
+}
+const checkOut = document.getElementById('checkout');
+checkOut.addEventListener('click', () => {
+  payWithPaystack();
+});

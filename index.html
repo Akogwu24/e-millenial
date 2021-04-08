@@ -267,9 +267,12 @@
           </div>
         </div>
         <form acton="" method="post">
-          <input type="text" placeholder="please input your name">
-          <input type="email" placeholder="please input your email">
-          <input type="number" placeholder="please input your phne number">
+          <input id='user-name' type="text" placeholder="please input your name">
+          <small id='user-name-error'></small>
+          <input id='email' type="email" placeholder="please input your email">
+          <small id='email-error'></small>
+          <input id='phone-number' type="number" placeholder="please input your phone number">
+          <small id='phone-number-error'></small>
         </form>
         <div class="total-amount">
           <h2>Total Amount to be Paid</h2>
@@ -281,7 +284,29 @@
         </div>
       </div>
     </section>
-    <!-- <script src="script.js" charset="utf-8"></script> -->
+
+    <!-- summary modal section -->
+    <section class='summary-modal'>
+      <div class="summary-modal-container">
+        <h1 class='thank-you'>Thank you <span id='akogwu'>Akogwu</span>, Your Order Has been Recieved</h1>
+        <img src='Project-files/images/check.svg' alt='check-icon'>
+        <h2>Summary</h2>
+        <div class="item-summary">
+          <div class="item-summary-header">
+            <h3>Item</h3>
+            <h3>Quantity</h3>
+          </div>
+          <div class="item-summary-items">
+            <span>Apple</span>
+            <span>1</span>
+          </div>
+        </div>
+        <button id="ok">OK</button>
+      </div>
+    </section>
+
+    <script src="https://js.paystack.co/v1/inline.js"></script> 
+    <script src="script.js" charset="utf-8"></script>
     <script src= 'main.js' ></script>
   </body>
 
