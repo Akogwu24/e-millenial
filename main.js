@@ -27,9 +27,13 @@ cartBtn.addEventListener('click', () => {
   document.querySelector('body').style.overflow = 'hidden';
 });
 
-//summary modal toogle
-const summaryModal = document.querySelector('.summary-modal');
-console.log(summaryModal);
+//continue shopping button functionlity
+const continueShopping = document.getElementById('continue');
+continueShopping.addEventListener('click', () => {
+  modal.classList.remove('modal-show');
+  document.querySelector('body').style.overflow = 'visible';
+  // modal.style.trasinsition = 'all ease in out 2s';
+});
 
 //Refresher
 function refreshCart() {
@@ -41,13 +45,6 @@ function refreshCart() {
     displayCart();
   }
 }
-
-//continue shopping button functionlity
-const continueShopping = document.getElementById('continue');
-continueShopping.addEventListener('click', () => {
-  modal.classList.remove('modal-show');
-  document.querySelector('body').style.overflow = 'visible';
-});
 
 let products = [
   {
@@ -275,12 +272,11 @@ onLoadCartNumbers();
 displayCart();
 
 //Paystack
-// paymentForm.addEventListener('submit', payWithPaystack, false);
-function payWithPaystack(e) {
+function payWithPaystack() {
   let handler = PaystackPop.setup({
     key: 'pk_test_e09721b733f1a894c46d10a8dacfd0a48df79d8a', // Replace with your public key
     email: document.getElementById('email').value,
-    amount: document.getElementById('total').value * 100,
+    amount: document.getElementById('total').textContent * 100,
     ref: '' + Math.floor(Math.random() * 1000000000 + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
     // label: "Optional string that replaces customer email"
     onClose: function () {
@@ -288,7 +284,7 @@ function payWithPaystack(e) {
     },
     callback: function (response) {
       let message = 'Payment complete! Reference: ' + response.reference;
-      alert(message);
+      showSummary();
     },
   });
   handler.openIframe();
@@ -296,4 +292,20 @@ function payWithPaystack(e) {
 const checkOut = document.getElementById('checkout');
 checkOut.addEventListener('click', () => {
   payWithPaystack();
+});
+
+//summary modal toogle
+function showSummary() {
+  const summaryModal = document.querySelector('.summary-modal');
+  summaryModal.classList.add('summary-modal-show');
+  document.querySelector('body').style.overflow = 'hidden';
+}
+
+showSummary();
+
+//close summary modal
+const okBtn = document.getElementById('ok');
+const summaryModal = document.querySelector('.summary-modal');
+okBtn.addEventListener('click', () => {
+  summaryModal.classList.remove('summary-modal-show');
 });
