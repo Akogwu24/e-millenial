@@ -449,7 +449,7 @@ button:hover {
 .summary-modal {
   background-color: rgba(38, 18, 6, 0.5);
   position: fixed;
-  z-index: 10;
+  z-index: 10000;
   top: 0;
   width: 100vw;
   height: 100vh;
@@ -475,7 +475,7 @@ button:hover {
   box-shadow: 5px 5px 15px rgb(43, 37, 33);
   text-align: center;
 }
-#akogwu {
+#buyer-name {
   color: rgb(209, 122, 60);
 }
 .summary-modal-container h1 {
