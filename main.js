@@ -40,7 +40,6 @@ const continueShopping = document.getElementById('continue');
 continueShopping.addEventListener('click', () => {
   modal.classList.remove('modal-show');
   document.querySelector('body').style.overflow = 'visible';
-  // modal.style.trasinsition = 'all ease in out 2s';
 });
 
 //Refresher
@@ -167,9 +166,6 @@ function displayCart() {
   let cartRow = document.querySelector('.cart-items');
   if (cartItems) {
     cartRow.innerHTML = '';
-    // let objectValues = Object.values(cartItems);
-    // console.log(objectValues[1].name);
-
     Object.values(cartItems).map((item) => {
       cartRow.innerHTML += `
          <div class="individual-cart-item-row">
