@@ -342,10 +342,8 @@ function checkProduct() {
   const emailError = document.getElementById('email-error');
   const phoneNumber = phoneNumberInputBar.value.trim();
   const phoneNumberError = document.getElementById('phone-number-error');
-
-  let cartItems = localStorage.getItem('productsInCart');
-  cartItems = JSON.parse(cartItems);
-  const itemsInCart = Object.keys(cartItems).length;
+  let items = document.getElementById('content');
+  console.log(items);
   if (userName == '') {
     userNameError.textContent = 'Name cannot be blank please input your name';
     userNameInputBar.style.border = 'thin solid';
@@ -358,13 +356,13 @@ function checkProduct() {
     phoneNumberError.textContent = 'Phone number cannot be blank';
     phoneNumberInputBar.style.border = 'thin solid';
     phoneNumberInputBar.style.borderColor = 'red';
-  } else if (itemsInCart < 1) {
+  } else if (items == null) {
     alert('You Have not Selected any Item');
   } else {
     payWithPaystack();
   }
 }
-
+checkProduct();
 //Paystack
 function payWithPaystack() {
   let handler = PaystackPop.setup({
