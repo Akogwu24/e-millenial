@@ -61,9 +61,10 @@ header {
 }
 .header-element-container ul li a {
   display: block;
+  transition: all 0.5s ease-in-out;
 }
 .header-element-container ul li a:hover {
-  text-decoration: underline;
+  color: rgb(144, 144, 219);
 }
 .hamburger {
   height: 20px;
@@ -170,7 +171,7 @@ q {
   font-size: 1.2rem;
 }
 .gallery-section {
-  background-color: rgba(7, 20, 87, 0.15);
+  background-color: rgba(7, 20, 87, 0.096);
   padding-top: 50px;
 }
 .gallery-section h2 {
@@ -210,7 +211,7 @@ q {
 }
 .price:hover {
   opacity: 1;
-  background-color: rgba(49, 49, 48, 0.11);
+  background-color: rgba(49, 49, 48, 0.473);
   height: 77%;
   left: 0;
   top: 0;
@@ -479,9 +480,11 @@ button:hover {
   border-radius: 10px;
   box-shadow: 5px 5px 15px rgb(43, 37, 33);
   text-align: center;
+  font-family: Helvetica, sans-serif;
 }
 #buyer-name {
   color: rgb(209, 122, 60);
+  font: oblique 1.8rem 'Potta One', cursive;
 }
 .summary-modal-container h1 {
   font-size: 1.2rem;
@@ -490,11 +493,16 @@ button:hover {
   width: 10rem;
   margin: 20px auto;
 }
+.summary-modal-container h2 {
+  font: 2em 'Georgia';
+}
 .item-summary-header {
   display: flex;
-  margin: 10px 0;
-  justify-content: space-around;
+  margin: 10px auto;
+  justify-content: space-between;
   align-items: center;
+  width: 70%;
+  font-family: Tahoma;
 }
 .first-summary-item,
 .second-summary-item {
@@ -502,10 +510,11 @@ button:hover {
   justify-content: space-between;
   width: 70%;
   margin: 5px auto;
+  border-bottom: rgba(184, 166, 146, 0.76) 1px solid;
 }
 .first-summary-item span,
 .second-summary-item span {
-  margin-right: 50px;
+  font: italic 1.2rem Helvetica, sans-serif;
 }
 
 #ok {
