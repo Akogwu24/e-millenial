@@ -271,6 +271,100 @@ function manageQuantity() {
 onLoadCartNumbers();
 displayCart();
 
+//Cart form Valiation
+//Name input Validation
+const userNameInputBar = document.getElementById('user-name');
+userNameInputBar.addEventListener('blur', validateName);
+function validateName() {
+  const userName = userNameInputBar.value.trim();
+  const userNameError = document.getElementById('user-name-error');
+  if (userName == '') {
+    userNameError.textContent = 'Name cannot be blank please input your name';
+    userNameInputBar.style.border = 'thin solid';
+    userNameInputBar.style.borderColor = 'red';
+  } else {
+    userNameError.textContent = '';
+    userNameInputBar.style.border = 'thin solid';
+    userNameInputBar.style.borderColor = 'green';
+  }
+}
+
+//Email Validation
+const emailInputBar = document.getElementById('email');
+emailInputBar.addEventListener('blur', validateEmail);
+function validateEmail() {
+  const email = emailInputBar.value.trim();
+  const emailError = document.getElementById('email-error');
+  if (email == '') {
+    emailError.textContent = 'email cannot be blank please input a valid email';
+    emailInputBar.style.border = 'thin solid';
+    emailInputBar.style.borderColor = 'red';
+  } else if (
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+      email
+    ) === false
+  ) {
+    emailError.textContent = 'Please input a valid email';
+    emailInputBar.style.border = 'thin solid';
+    emailInputBar.style.borderColor = 'red';
+  } else {
+    emailError.textContent = '';
+    emailInputBar.style.border = 'thin solid';
+    emailInputBar.style.borderColor = 'green';
+  }
+}
+//Phone Number Validation
+const phoneNumberInputBar = document.getElementById('phone-number');
+phoneNumberInputBar.addEventListener('blur', validatePhoneNumber);
+function validatePhoneNumber() {
+  const phoneNumber = phoneNumberInputBar.value.trim();
+  const phoneNumberError = document.getElementById('phone-number-error');
+  if (phoneNumber == '') {
+    phoneNumberError.textContent = 'Phone number cannot be blank';
+    phoneNumberInputBar.style.border = 'thin solid';
+    phoneNumberInputBar.style.borderColor = 'red';
+  } else if (phoneNumber.length != 11) {
+    phoneNumberError.textContent =
+      'Invalid, Phone number must be eleven digits';
+    phoneNumberInputBar.style.border = 'thin solid';
+    phoneNumberInputBar.style.borderColor = 'red';
+  } else {
+    phoneNumberInputBar.style.border = 'thin solid';
+    phoneNumberInputBar.style.borderColor = 'green';
+  }
+}
+
+//All validations check
+function checkProduct() {
+  const userName = userNameInputBar.value.trim();
+  const userNameError = document.getElementById('user-name-error');
+  const email = emailInputBar.value.trim();
+  const emailError = document.getElementById('email-error');
+  const phoneNumber = phoneNumberInputBar.value.trim();
+  const phoneNumberError = document.getElementById('phone-number-error');
+
+  let cartItems = localStorage.getItem('productsInCart');
+  cartItems = JSON.parse(cartItems);
+  const itemsInCart = Object.keys(cartItems).length;
+  if (userName == '') {
+    userNameError.textContent = 'Name cannot be blank please input your name';
+    userNameInputBar.style.border = 'thin solid';
+    userNameInputBar.style.borderColor = 'red';
+  } else if (email == '') {
+    emailError.textContent = 'email cannot be blank please input a valid email';
+    emailInputBar.style.border = 'thin solid';
+    emailInputBar.style.borderColor = 'red';
+  } else if (phoneNumber == '') {
+    phoneNumberError.textContent = 'Phone number cannot be blank';
+    phoneNumberInputBar.style.border = 'thin solid';
+    phoneNumberInputBar.style.borderColor = 'red';
+  } else if (itemsInCart < 1) {
+    alert('You Have not Selected any Item');
+  } else {
+    payWithPaystack();
+  }
+}
+
 //Paystack
 function payWithPaystack() {
   let handler = PaystackPop.setup({
@@ -291,60 +385,8 @@ function payWithPaystack() {
 }
 const checkOut = document.getElementById('checkout');
 checkOut.addEventListener('click', () => {
-  // checkFormInputs();
-  payWithPaystack();
+  checkProduct();
 });
-
-//modal form validation
-//getting the input elements
-// const userName = document.getElementById('user-name');
-// const userNameError = document.getElementById('user-name-error');
-// const email = document.getElementById('email');
-// const emailError = document.getElementById('email-error');
-// const phoneNumber = document.getElementById('phone-number');
-// const phoneNumberError = document.getElementById('phone-number-error');
-
-// function checkFormInputs() {
-//   const userNameValue = userName.value.trim();
-//   const emailValue = email.value.trim();
-//   const phoneNumberValue = phoneNumber.value.trim();
-//   console.log(userNameValue);
-//   //username validation
-//   userName.addEventListener('blur', () => {
-//     if (userNameValue == '') {
-//       userNameError.textContent = 'Name cannot be blank please input your name';
-//       userName.style.border = 'thin solid';
-//       userName.style.borderColor = 'red';
-//     } else {
-//       userName.style.border = 'thin solid';
-//       userName.style.borderColor = 'green';
-//     }
-//   });
-//   //email validation
-//   email.addEventListener('blur', () => {
-//     if (emailValue == '') {
-//       emailError.textContent =
-//         'email cannot be blank please input a valid email';
-//       email.style.border = 'thin solid';
-//       email.style.borderColor = 'red';
-//     } else {
-//       email.style.border = 'thin solid';
-//       email.style.borderColor = 'green';
-//     }
-//   });
-//   //phone number validation
-//   phoneNumber.addEventListener('blur', () => {
-//     if (phoneNumber == '' || phoneNumberValue.length < 11) {
-//       phoneNumberError.textContent = 'Enter a valid 11 digits phone number';
-//       phoneNumber.style.border = 'thin solid';
-//       phoneNumber.style.borderColor = 'red';
-//     } else {
-//       phoneNumber.style.border = 'thin solid';
-//       phoneNumber.style.borderColor = 'green';
-//     }
-//   });
-// }
-// checkFormInputs();
 
 //summary modal toogle
 function showSummary() {
@@ -365,8 +407,6 @@ function showSummary() {
   }
   document.querySelector('body').style.overflow = 'hidden';
 }
-
-// showSummary();
 
 //close summary modal
 const okBtn = document.getElementById('ok');

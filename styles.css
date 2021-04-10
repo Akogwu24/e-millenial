@@ -336,7 +336,7 @@ form button {
 .modal-show {
   opacity: 1;
   pointer-events: auto;
-  transition: ease-in-out 0.8s;
+  transition: ease-in-out 0.5s;
 }
 .modal-container {
   padding: 30px 5% 5%;
