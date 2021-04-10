@@ -5,6 +5,14 @@ menu.addEventListener('click', () => {
   navBar.classList.toggle('appear');
 });
 
+//nav links to remove the navigation that display from clicking the hamburger
+const navLinks = document.querySelectorAll('.header-element-container a');
+navLinks.forEach((link) => {
+  link.addEventListener('click', () => {
+    navBar.classList.remove('appear');
+  });
+});
+
 //Typing text Animation
 let heroText = document.querySelector('.banner-content h1');
 const text = heroText.innerText;
@@ -343,7 +351,6 @@ function checkProduct() {
   const phoneNumber = phoneNumberInputBar.value.trim();
   const phoneNumberError = document.getElementById('phone-number-error');
   let items = document.getElementById('content');
-  console.log(items);
   if (userName == '') {
     userNameError.textContent = 'Name cannot be blank please input your name';
     userNameInputBar.style.border = 'thin solid';
