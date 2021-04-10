@@ -16,7 +16,7 @@ function typeHeroText() {
     indexoOfTextCharcter = 0;
   }
 }
-// setInterval(typeHeroText, 500);
+setInterval(typeHeroText, 500);
 
 //modal toggle
 const modal = document.querySelector('.modal');
