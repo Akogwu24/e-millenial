@@ -54,7 +54,8 @@ function refreshCart() {
   }
 }
 
-let products = [
+// Array of our product Objects
+const products = [
   {
     name: 'Samsungtv',
     price: 50000,
@@ -93,6 +94,7 @@ let products = [
   },
 ];
 
+//Add to cart Buttons Funtionality
 const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
 for (let index = 0; index < addToCartButtons.length; index++) {
   addToCartButtons[index].addEventListener('click', () => {
@@ -102,12 +104,12 @@ for (let index = 0; index < addToCartButtons.length; index++) {
 }
 
 function onLoadCartNumbers() {
-  let productNumbers = localStorage.getItem('cartNumbers');
+  const productNumbers = localStorage.getItem('cartNumbers');
   if (productNumbers) {
     document.getElementById('count').textContent = productNumbers;
   }
 }
-
+//Fuction to Set The Number of items in the cart
 function cartNumbers(product, action) {
   let productNumbers = localStorage.getItem('cartNumbers');
   productNumbers = parseInt(productNumbers);
@@ -147,7 +149,6 @@ function setItems(product) {
 }
 
 function totalCost(product, action) {
-  console.log(product.price);
   let cartCost = localStorage.getItem('totalCost');
   if (action == 'decrease') {
     cartCost = parseInt(cartCost);
@@ -193,7 +194,7 @@ function displayCart() {
 
 //Remove Button from Cart Functionality
 function removeButton() {
-  let removeButtons = document.querySelectorAll('.remove-btn');
+  const removeButtons = document.querySelectorAll('.remove-btn');
   let productName;
   let productNumbers = localStorage.getItem('cartNumbers');
   let cartItems = localStorage.getItem('productsInCart');
@@ -243,7 +244,6 @@ function manageQuantity() {
         / /g,
         ''
       );
-      console.log(currentProduct);
 
       if (cartItems[currentProduct].inCart > 1) {
         cartItems[currentProduct].inCart = cartItems[currentProduct].inCart - 1;
