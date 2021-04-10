@@ -390,27 +390,37 @@ checkOut.addEventListener('click', () => {
 
 //summary modal toogle
 function showSummary() {
+  document.getElementById(
+    'buyer-name'
+  ).innerText = userNameInputBar.value.trim();
   const summaryModal = document.querySelector('.summary-modal');
   summaryModal.classList.add('summary-modal-show');
-  let summaryModalContent = document.querySelector('.summary-modal-container');
-  const cartItems = localStorage.getItem('productsInCart');
+  // let summaryModalContent = document.querySelector('.summary-modal-container');
+  let cartItems = localStorage.getItem('productsInCart');
   cartItems = JSON.parse(cartItems);
   let itemSummaryItems = document.querySelector('.item-summary-items');
   if (cartItems) {
     itemSummaryItems.innerHTML = '';
     Object.values(cartItems).map((item) => {
       itemSummaryItems.innerHTML += `
-      <span>${item.name}</span>
-      <span>${item.inCart}</span>
+      <div class="item-summary-items">
+        <div class='first-summary-item'>
+          <span>${item.name}</span>
+          <span>${item.inCart}</span>
+        </div>
+      </div>
       `;
     });
   }
   document.querySelector('body').style.overflow = 'hidden';
 }
+// showSummary();
 
 //close summary modal
 const okBtn = document.getElementById('ok');
 const summaryModal = document.querySelector('.summary-modal');
 okBtn.addEventListener('click', () => {
   summaryModal.classList.remove('summary-modal-show');
+  localStorage.clear();
+  window.location.reload();
 });

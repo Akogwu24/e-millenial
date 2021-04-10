@@ -491,13 +491,16 @@ button:hover {
   justify-content: space-around;
   align-items: center;
 }
-.item-summary-items {
+.first-summary-item,
+.second-summary-item {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: space-between;
+  width: 70%;
+  margin: 5px auto;
 }
-.item-summary-items span {
-  margin-right: 30px;
+.first-summary-item span,
+.second-summary-item span {
+  margin-right: 50px;
 }
 
 #ok {
