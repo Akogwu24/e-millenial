@@ -416,7 +416,6 @@ function showSummary() {
   }
   document.querySelector('body').style.overflow = 'hidden';
 }
-// showSummary();
 
 //close summary modal
 const okBtn = document.getElementById('ok');
