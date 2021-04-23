@@ -26,7 +26,7 @@ function typeHeroText() {
 }
 setInterval(typeHeroText, 400);
 
-//modal toggle
+//modal Show
 const modal = document.querySelector('.modal');
 const cartBtn = document.getElementById('cart-btn');
 cartBtn.addEventListener('click', () => {
@@ -41,7 +41,7 @@ continueShopping.addEventListener('click', () => {
   modal.classList.remove('modal-show');
   document.querySelector('body').style.overflow = 'visible';
   localStorage.clear();
-  refreshCart();
+  // refreshCart();
   window.location.reload();
 });
 
@@ -236,7 +236,6 @@ function manageQuantity() {
   for (let i = 0; i < decreaseButtons.length; i++) {
     decreaseButtons[i].addEventListener('click', () => {
       currentQuantity = document.querySelector('.quantity').textContent;
-      console.log(currentQuantity);
       currentProduct = decreaseButtons[
         i
       ].parentElement.parentElement.firstElementChild.textContent.replace(
@@ -266,7 +265,6 @@ function manageQuantity() {
         / /g,
         ''
       );
-      console.log(currentProduct);
       cartItems[currentProduct].inCart = cartItems[currentProduct].inCart + 1;
       cartNumbers(cartItems[currentProduct]);
       totalCost(cartItems[currentProduct]);
