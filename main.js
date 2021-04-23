@@ -364,7 +364,8 @@ function checkProduct() {
     phoneNumberInputBar.style.border = 'thin solid';
     phoneNumberInputBar.style.borderColor = 'red';
   } else if (phoneNumber.length != 11) {
-    phoneNumberError.textContent = 'invalid, Phone number must be 11 digits';
+    phoneNumberError.textContent =
+      'Invalid, Phone number must be eleven digits';
     phoneNumberInputBar.style.border = 'thin solid';
     phoneNumberInputBar.style.borderColor = 'red';
   } else if (cartItems === null) {
