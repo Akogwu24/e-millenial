@@ -338,6 +338,7 @@ function validatePhoneNumber() {
   } else {
     phoneNumberInputBar.style.border = 'thin solid';
     phoneNumberInputBar.style.borderColor = 'green';
+    phoneNumberError.textContent = '';
   }
 }
 checkProduct();
@@ -350,7 +351,6 @@ function checkProduct() {
   const phoneNumber = phoneNumberInputBar.value.trim();
   const phoneNumberError = document.getElementById('phone-number-error');
   let cartItems = localStorage.getItem('productsInCart');
-  console.log(cartItems);
   let items = document.getElementById('content');
   if (userName == '') {
     userNameError.textContent = 'Name cannot be blank please input your name';
@@ -364,8 +364,10 @@ function checkProduct() {
     phoneNumberError.textContent = 'Phone number cannot be blank';
     phoneNumberInputBar.style.border = 'thin solid';
     phoneNumberInputBar.style.borderColor = 'red';
-  } else if (cartItems == 0) {
-    alert('You Have not Selected any Item');
+  } else if (cartItems === null) {
+    alert(
+      'You Have not Selected any Item, Click continue shopping and add desired items'
+    );
   } else {
     payWithPaystack();
   }
