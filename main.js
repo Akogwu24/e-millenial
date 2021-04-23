@@ -341,7 +341,6 @@ function validatePhoneNumber() {
     phoneNumberError.textContent = '';
   }
 }
-checkProduct();
 //All validations check
 function checkProduct() {
   const userName = userNameInputBar.value.trim();
@@ -362,6 +361,10 @@ function checkProduct() {
     emailInputBar.style.borderColor = 'red';
   } else if (phoneNumber == '') {
     phoneNumberError.textContent = 'Phone number cannot be blank';
+    phoneNumberInputBar.style.border = 'thin solid';
+    phoneNumberInputBar.style.borderColor = 'red';
+  } else if (phoneNumber.length != 11) {
+    phoneNumberError.textContent = 'invalid, Phone number must be 11 digits';
     phoneNumberInputBar.style.border = 'thin solid';
     phoneNumberInputBar.style.borderColor = 'red';
   } else if (cartItems === null) {
