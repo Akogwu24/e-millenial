@@ -1,6 +1,3 @@
-localStorage.clear();
-// window.location.reload();
-
 //hamburger and navbar fumctionality
 const navBar = document.getElementById('nav-bar');
 const menu = document.querySelector('.hamburger');
@@ -43,18 +40,21 @@ const continueShopping = document.getElementById('continue');
 continueShopping.addEventListener('click', () => {
   modal.classList.remove('modal-show');
   document.querySelector('body').style.overflow = 'visible';
+  localStorage.clear();
+  refreshCart();
+  window.location.reload();
 });
 
-//Refresher
-// function refreshCart() {
-//   let = content = document.querySelectorAll('.content');
-//   if (content) {
-//     for (let i = 0; i < content.length; i++) {
-//       content[i].remove();
-//     }
-//     displayCart();
-//   }
-// }
+//Refresher;
+function refreshCart() {
+  let = content = document.querySelectorAll('.content');
+  if (content) {
+    for (let i = 0; i < content.length; i++) {
+      content[i].remove();
+    }
+    displayCart();
+  }
+}
 
 // Array of our product Objects
 const products = [
@@ -340,7 +340,7 @@ function validatePhoneNumber() {
     phoneNumberInputBar.style.borderColor = 'green';
   }
 }
-
+checkProduct();
 //All validations check
 function checkProduct() {
   const userName = userNameInputBar.value.trim();
@@ -350,6 +350,7 @@ function checkProduct() {
   const phoneNumber = phoneNumberInputBar.value.trim();
   const phoneNumberError = document.getElementById('phone-number-error');
   let cartItems = localStorage.getItem('productsInCart');
+  console.log(cartItems);
   let items = document.getElementById('content');
   if (userName == '') {
     userNameError.textContent = 'Name cannot be blank please input your name';
@@ -363,7 +364,7 @@ function checkProduct() {
     phoneNumberError.textContent = 'Phone number cannot be blank';
     phoneNumberInputBar.style.border = 'thin solid';
     phoneNumberInputBar.style.borderColor = 'red';
-  } else if (cartItems === null) {
+  } else if (cartItems == 0) {
     alert('You Have not Selected any Item');
   } else {
     payWithPaystack();
