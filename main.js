@@ -1,9 +1,5 @@
-let btnNames = JSON.parse(localStorage.getItem('productsInCart'));
-console.log(btnNames);
-if (btnNames) {
-  btnNames = Object.values(btnNames);
-  console.log(btnNames);
-}
+localStorage.clear();
+// window.location.reload();
 
 //hamburger and navbar fumctionality
 const navBar = document.getElementById('nav-bar');
@@ -105,7 +101,6 @@ const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
 for (let index = 0; index < addToCartButtons.length; index++) {
   addToCartButtons[index].addEventListener('click', () => {
     cartNumbers(products[index]);
-    addToCartButtons[index].innerText = 'Remove Item';
     totalCost(products[index]);
   });
 }
