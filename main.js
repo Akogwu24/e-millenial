@@ -1,3 +1,10 @@
+let btnNames = JSON.parse(localStorage.getItem('productsInCart'));
+console.log(btnNames);
+if (btnNames) {
+  btnNames = Object.values(btnNames);
+  console.log(btnNames);
+}
+
 //hamburger and navbar fumctionality
 const navBar = document.getElementById('nav-bar');
 const menu = document.querySelector('.hamburger');
@@ -43,15 +50,15 @@ continueShopping.addEventListener('click', () => {
 });
 
 //Refresher
-function refreshCart() {
-  let = content = document.querySelectorAll('.content');
-  if (content) {
-    for (let i = 0; i < content.length; i++) {
-      content[i].remove();
-    }
-    displayCart();
-  }
-}
+// function refreshCart() {
+//   let = content = document.querySelectorAll('.content');
+//   if (content) {
+//     for (let i = 0; i < content.length; i++) {
+//       content[i].remove();
+//     }
+//     displayCart();
+//   }
+// }
 
 // Array of our product Objects
 const products = [
@@ -98,6 +105,7 @@ const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
 for (let index = 0; index < addToCartButtons.length; index++) {
   addToCartButtons[index].addEventListener('click', () => {
     cartNumbers(products[index]);
+    addToCartButtons[index].innerText = 'Remove Item';
     totalCost(products[index]);
   });
 }
