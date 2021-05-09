@@ -24,7 +24,7 @@ function typeHeroText() {
     indexoOfTextCharcter = 0;
   }
 }
-setInterval(typeHeroText, 400);
+// setInterval(typeHeroText, 400);
 
 //modal Show
 const modal = document.querySelector('.modal');
@@ -40,14 +40,13 @@ const continueShopping = document.getElementById('continue');
 continueShopping.addEventListener('click', () => {
   modal.classList.remove('modal-show');
   document.querySelector('body').style.overflow = 'visible';
+  refreshCart();
   localStorage.clear();
-  // refreshCart();
-  window.location.reload();
 });
 
 //Refresher;
 function refreshCart() {
-  let = content = document.querySelectorAll('.content');
+  let content = document.querySelectorAll('.content');
   if (content) {
     for (let i = 0; i < content.length; i++) {
       content[i].remove();
@@ -99,9 +98,41 @@ const products = [
 //Add to cart Buttons Funtionality
 const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
 for (let index = 0; index < addToCartButtons.length; index++) {
-  addToCartButtons[index].addEventListener('click', () => {
-    cartNumbers(products[index]);
-    totalCost(products[index]);
+  let clickedButton = addToCartButtons[index];
+  clickedButton.addEventListener('click', (event) => {
+    if (clickedButton.textContent === 'ADD TO CART') {
+      cartNumbers(products[index]);
+      totalCost(products[index]);
+      clickedButton.textContent = 'REMOVE FROM CART';
+    } else {
+      clickedButton.textContent = 'ADD TO CART';
+      let productNumbers = localStorage.getItem('cartNumbers');
+      let cartItems = localStorage.getItem('productsInCart');
+      cartItems = JSON.parse(cartItems);
+      console.log('the products in cart are', cartItems);
+
+      let productName = clickedButton.previousElementSibling.textContent
+        .trim()
+        .toLowerCase()
+        .replace(/ /g, '');
+      productName = productName.charAt(0).toUpperCase() + productName.slice(1);
+      console.log(productName);
+      localStorage.setItem(
+        'cartNumbers',
+        productNumbers - cartItems[productName].inCart
+      );
+
+      let cartCost = localStorage.getItem('totalCost');
+      localStorage.setItem(
+        'totalCost',
+        cartCost - cartItems[productName].price * cartItems[productName].inCart
+      );
+      delete cartItems[productName];
+      localStorage.setItem('productsInCart', JSON.stringify(cartItems));
+
+      displayCart();
+      onLoadCartNumbers();
+    }
   });
 }
 
@@ -198,7 +229,6 @@ function removeButton() {
   let productNumbers = localStorage.getItem('cartNumbers');
   let cartItems = localStorage.getItem('productsInCart');
   cartItems = JSON.parse(cartItems);
-  // console.log(cartItems);
   let cartCost = localStorage.getItem('totalCost');
 
   for (i = 0; i < removeButtons.length; i++) {

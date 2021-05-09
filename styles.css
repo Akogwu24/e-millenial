@@ -91,10 +91,10 @@ header nav {
   width: 100vw;
   height: 100vh;
   display: flex;
+  transition: all 1s ease-in-out;
 }
 .appear {
   top: 40px;
-  transition: all 1s ease-in-out;
 }
 .hero-text {
   width: 100%;
@@ -336,11 +336,11 @@ form button {
   align-items: center;
   pointer-events: none;
   opacity: 0;
+  transition: ease-in-out 0.5s;
 }
 .modal-show {
   opacity: 1;
   pointer-events: auto;
-  transition: ease-in-out 0.5s;
 }
 .modal-container {
   padding: 30px 5% 5%;
@@ -462,11 +462,11 @@ button:hover {
   align-items: center;
   pointer-events: none;
   opacity: 0;
+  transition: ease-in-out 0.8s;
 }
 .summary-modal-show {
   opacity: 1;
   pointer-events: auto;
-  transition: ease-in-out 0.8s;
 }
 
 .summary-modal-container {
