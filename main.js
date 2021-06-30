@@ -24,7 +24,7 @@ function typeHeroText() {
     indexoOfTextCharcter = 0;
   }
 }
-// setInterval(typeHeroText, 400);
+setInterval(typeHeroText, 400);
 
 //modal Show
 const modal = document.querySelector('.modal');
@@ -100,39 +100,8 @@ const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
 for (let index = 0; index < addToCartButtons.length; index++) {
   let clickedButton = addToCartButtons[index];
   clickedButton.addEventListener('click', (event) => {
-    if (clickedButton.textContent === 'ADD TO CART') {
-      cartNumbers(products[index]);
-      totalCost(products[index]);
-      clickedButton.textContent = 'REMOVE FROM CART';
-    } else {
-      clickedButton.textContent = 'ADD TO CART';
-      let productNumbers = localStorage.getItem('cartNumbers');
-      let cartItems = localStorage.getItem('productsInCart');
-      cartItems = JSON.parse(cartItems);
-      console.log('the products in cart are', cartItems);
-
-      let productName = clickedButton.previousElementSibling.textContent
-        .trim()
-        .toLowerCase()
-        .replace(/ /g, '');
-      productName = productName.charAt(0).toUpperCase() + productName.slice(1);
-      console.log(productName);
-      localStorage.setItem(
-        'cartNumbers',
-        productNumbers - cartItems[productName].inCart
-      );
-
-      let cartCost = localStorage.getItem('totalCost');
-      localStorage.setItem(
-        'totalCost',
-        cartCost - cartItems[productName].price * cartItems[productName].inCart
-      );
-      delete cartItems[productName];
-      localStorage.setItem('productsInCart', JSON.stringify(cartItems));
-
-      displayCart();
-      onLoadCartNumbers();
-    }
+    cartNumbers(products[index]);
+    totalCost(products[index]);
   });
 }
 
@@ -234,10 +203,11 @@ function removeButton() {
   for (i = 0; i < removeButtons.length; i++) {
     let removeButton = removeButtons[i];
     removeButton.addEventListener('click', () => {
-      productName = removeButton.parentElement.parentElement.firstElementChild.textContent.replace(
-        / /g,
-        ''
-      );
+      productName =
+        removeButton.parentElement.parentElement.firstElementChild.textContent.replace(
+          / /g,
+          ''
+        );
       localStorage.setItem(
         'cartNumbers',
         productNumbers - cartItems[productName].inCart
@@ -430,9 +400,8 @@ checkOut.addEventListener('click', () => {
 
 //summary modal toogle
 function showSummary() {
-  document.getElementById(
-    'buyer-name'
-  ).innerText = userNameInputBar.value.trim();
+  document.getElementById('buyer-name').innerText =
+    userNameInputBar.value.trim();
   const summaryModal = document.querySelector('.summary-modal');
   summaryModal.classList.add('summary-modal-show');
   // let summaryModalContent = document.querySelector('.summary-modal-container');
